@@ -1,0 +1,47 @@
+.login_box{
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    display: flex;
+    position: relative;
+    padding-bottom: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+.login_text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login_button{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    text-decoration: none;
+    border-radius: 7px;
+    border: transparent;
+    color: white;
+    background-color: #06812d; 
+}
+.login_button:hover{
+    background-color: #1eaa4f;
+    cursor: pointer;
+}
+.loading_spinner{
+    animation: spin infinite 2s linear;
+
+}
+@keyframes spin{
+    from {
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
