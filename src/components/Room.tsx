@@ -22,40 +22,71 @@ export default function Room() {
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
     let [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
     let [deviceID, setDeviceID] = useState<string>("");
-    useEffect(()=>{
-        const head = document.querySelector("head");
-        const script = document.createElement("script");
-        script.async = true;
-        script.setAttribute("src", webPlaybackScript);
-        head!.appendChild(script);
-        window.onSpotifyWebPlaybackSDKReady =  () => {
-            const player = new Spotify.Player({
-                name: 'TEST PLAYER',
-                getOAuthToken: cb =>{cb(access_token);},
-                volume:0.5
-            });
-            player.addListener("ready", ({device_id}) =>{
-                console.log(device_id);
-                setDeviceID(device_id);
-                setSpotifyPlayer(player);
-            });
-            player.addListener('initialization_error', ({ message }) => { 
-                console.error(message);
-            });
+    function connectPlayer(): void {
+            const head = document.querySelector("head");
+            const script = document.createElement("script");
+            script.async = true;
+            script.setAttribute("src", webPlaybackScript);
+            head!.appendChild(script);
+            window.onSpotifyWebPlaybackSDKReady =  () => {
+                const player = new Spotify.Player({
+                    name: 'TEST PLAYER',
+                    getOAuthToken: cb =>{cb(access_token);},
+                    volume:0.5
+                });
+                player.addListener("ready", ({device_id}) =>{
+                    console.log(device_id);
+                    setDeviceID(device_id);
+                    setSpotifyPlayer(player);
+                });
+                player.addListener('initialization_error', ({ message }) => { 
+                    console.error(message);
+                });
+            
+                player.addListener('authentication_error', ({ message }) => {
+                    console.error(message);
+                });
+            
+                player.addListener('account_error', ({ message }) => {
+                    console.error(message);
+                });
+                player.connect();
+    }
+    // useEffect(()=>{
+        // const head = document.querySelector("head");
+        // const script = document.createElement("script");
+        // script.async = true;
+        // script.setAttribute("src", webPlaybackScript);
+        // head!.appendChild(script);
+        // window.onSpotifyWebPlaybackSDKReady =  () => {
+        //     const player = new Spotify.Player({
+        //         name: 'TEST PLAYER',
+        //         getOAuthToken: cb =>{cb(access_token);},
+        //         volume:0.5
+        //     });
+        //     player.addListener("ready", ({device_id}) =>{
+        //         console.log(device_id);
+        //         setDeviceID(device_id);
+        //         setSpotifyPlayer(player);
+        //     });
+        //     player.addListener('initialization_error', ({ message }) => { 
+        //         console.error(message);
+        //     });
           
-            player.addListener('authentication_error', ({ message }) => {
-                console.error(message);
-            });
+        //     player.addListener('authentication_error', ({ message }) => {
+        //         console.error(message);
+        //     });
           
-            player.addListener('account_error', ({ message }) => {
-                console.error(message);
-            });
-            player.connect();
-        }
-        return ()=>{
-            head?.removeChild(script);
-        }
-    }, [])
+        //     player.addListener('account_error', ({ message }) => {
+        //         console.error(message);
+        //     });
+        //     player.connect();
+        // }
+        // return ()=>{
+        //     head?.removeChild(script);
+        // }
+    // }, [])
+    }
   return (
     <>
         <div className="room_page">
@@ -75,6 +106,9 @@ export default function Room() {
                         <NextButton/>
                     </div>
                     <PlaybackBar/>
+                        <button onClick={() => connectPlayer()}>
+                            click to listen along
+                        </button>
                 </div>
                 <div className="queue_container">
 
@@ -84,3 +118,4 @@ export default function Room() {
     </>
   )
 }
+

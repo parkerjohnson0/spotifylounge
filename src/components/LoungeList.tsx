@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/LoungeList.css';
 import {Link, useParams} from 'react-router-dom';
+import getRooms from '../services/ApiService';
 interface LoungeListProps{
     lounges: any[]
 }
@@ -8,6 +9,9 @@ export default function LoungeList(props:LoungeListProps){
     const testID = 3;
     const {access_token} = useParams();
     console.log(access_token);
+    useEffect(()=>{
+        getRooms();
+    }, [])
     return(
         <div className="lounge_list_container">
             {props.lounges.map(x =>{
@@ -35,3 +39,4 @@ export default function LoungeList(props:LoungeListProps){
 
     )
 }
+
