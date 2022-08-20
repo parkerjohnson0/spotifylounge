@@ -18,7 +18,6 @@ function App() {
       window.localStorage.setItem("token", token);
     }
     setToken(token);
-    console.log(token);
   },[])
 
   return (
@@ -27,8 +26,7 @@ function App() {
         <h2 className="header">Spotify Lounges</h2>
         <div className="App">
           {/* NOTE: figure out cleaner way to do this maybe */}
-          {token != null || <Login />  }
-          {token == null || <LoungeList lounges={lounges} />}
+           <LoungeList lounges={lounges} />
         </div>
       </div>
     </div>

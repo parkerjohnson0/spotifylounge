@@ -1,0 +1,14 @@
+.previous_button_component_container{
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+.previous_button_icon{
+    position:relative;
+    left: 85px;
+    width: 50px;
+    content: url("../../public/icons/previous_button.png");
+}
+.previous_button_icon:hover{
+    content: url("../../public/icons/previous_button_alt.png");
+}

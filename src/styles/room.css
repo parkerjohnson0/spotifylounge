@@ -1,5 +1,63 @@
+.room_page{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    width: 1200px;
+    height: 100%;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
 .room_container{
-    background-color: red;
-    width: 70%;
-    height: 70%;
+    background-color: #151515;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.playback_container{
+    padding-left: 50px ;
+    padding-right: 50px;
+    width: 400px;
+}
+.album_info{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    padding-top: 50px;
+}
+.album_room_pic{
+    width: 400px;
+    align-self: flex-start;
+    
+}
+.playback_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+.album_name{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    padding-top: 5px;
+}
+.song_name{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: #797979;
+    margin: 0;
+    
+}
+.playback_controls{
+    display: flex;
+    align-items: center;
+
+    height: 100px;
+    position:relative;
+    justify-content: center;
 }

@@ -1,0 +1,15 @@
+
+.next_button_component_container{
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+.next_button_icon{
+    content: url("../../public/icons/next_button.png");
+    position:relative;
+    right: 85px;
+    width: 50px;
+}
+.next_button_icon:hover{
+    content: url("../../public/icons/next_button_alt.png");
+}

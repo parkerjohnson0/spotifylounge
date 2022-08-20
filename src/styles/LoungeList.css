@@ -8,10 +8,10 @@
 
 }
 .lounge_container{
-    width: 300px;
+    width: 400px;
     /* background-color: black; */
     background-color: #121212;
-    height: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -31,8 +31,7 @@
     flex-direction: row;
 }
 .current_song_pic{
-    width: 40%;
-    height: 40%;
+    max-width: 50%;
     /* position: absolute;
     left: 0; */
 }
@@ -42,11 +41,11 @@
     padding-left: 5px;
     width: 100%;
 }
-.song_name{
+.song_name_lounge{
 
 }
-.artist_name{
-    font-size: 12px;
+.artist_name_lounge{
+    font-size: 16px;
 }
 .lounge_footer{
     width: 100%;

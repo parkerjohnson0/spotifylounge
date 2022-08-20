@@ -1,0 +1,12 @@
+.playbackbar_component_container{
+    display: flex;
+    color: #8e8e8e;
+    align-items: center;
+    gap:10px
+}
+.playbackbar{
+    width: 100%;
+    background: linear-gradient(90deg, white 50%, #8e8e8e 50%);
+    height: 5px;
+    border-radius: 10px;
+}

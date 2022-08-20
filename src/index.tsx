@@ -4,20 +4,22 @@ import './index.css';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Room from './components/Room';
+import Login from './components/Login';
+import './styles/Login.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter >
     <Routes>
-      <Route path="/" element={<App />}/>
+      <Route path="/" element={<Login />}/>
+      <Route path="/:access_token" element={<App />}/>
       <Route path="/room/:roomID" element={<Room />}/>
-
     </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
