@@ -7,7 +7,7 @@
 .next_button_icon{
     content: url("../../public/icons/next_button.png");
     position:relative;
-    right: 85px;
+    right: 55px;
     width: 50px;
 }
 .next_button_icon:hover{

@@ -5,7 +5,7 @@
 }
 .previous_button_icon{
     position:relative;
-    left: 85px;
+    left: 55px;
     width: 50px;
     content: url("../../public/icons/previous_button.png");
 }

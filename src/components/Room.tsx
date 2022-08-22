@@ -6,6 +6,8 @@ import PlayButton from './PlayButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import PlaybackBar from './PlaybackBar';
+import {Types} from '../models/Types'
+import {getRoom} from '../services/ApiService';
 // declare global{
 //     interface Window{
 //         onSpotifyWebPlaybackSDKReady: () => void;
@@ -18,18 +20,37 @@ export default function Room() {
     const {roomID}  = useParams();
     const location = useLocation().state as RouteProps;
     const access_token = location.access_token;
-    const roomData = testData();
+    const [room, setRoom] = useState<Types.Room | null>();
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
-    let [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
+    const [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
     let [deviceID, setDeviceID] = useState<string>("");
+    const head = document.querySelector("head");
+    const script = document.createElement("script");
+    useEffect(()=>{
+        const fetchRooms = async () =>{
+            let room = await getRoom(roomID)
+                .then(room => {
+                   return room?.at(0);
+                });
+            setRoom(room);
+        }
+        fetchRooms();
+    },[])
+    useEffect(()=>{
+       return ()  =>{
+                //cleanup player and script node if exists upon dismount
+                spotifyPlayer?.disconnect();
+                if (head?.contains(script)){
+                    head?.removeChild(script);
+                }
+       } 
+    },[spotifyPlayer])
     function connectPlayer(): void {
-            const head = document.querySelector("head");
-            const script = document.createElement("script");
             script.async = true;
             script.setAttribute("src", webPlaybackScript);
             head!.appendChild(script);
             window.onSpotifyWebPlaybackSDKReady =  () => {
-                const player = new Spotify.Player({
+                let player = new Spotify.Player({
                     name: 'TEST PLAYER',
                     getOAuthToken: cb =>{cb(access_token);},
                     volume:0.5
@@ -51,6 +72,8 @@ export default function Room() {
                     console.error(message);
                 });
                 player.connect();
+                setSpotifyPlayer(player);
+                // player.activateElement();
     }
     // useEffect(()=>{
         // const head = document.querySelector("head");
@@ -90,14 +113,14 @@ export default function Room() {
   return (
     <>
         <div className="room_page">
-            <h2 className="header">{roomData.Name}</h2>
+            <h2 className="header">{room?.Name}</h2>
             <div className="room_container">
                 <div className="playback_container">
                     <div className="album_info">
-                        <img className="album_room_pic" src={roomData.SongPicture}/>
+                        <img className="album_room_pic" src={room?.SongPicture}/>
                         <div className="playback_info">
-                            <p className="album_name">{roomData.SongName}</p>
-                            <p className="song_name">{roomData.SongArtist}</p>
+                            <p className="album_name">{room?.SongName}</p>
+                            <p className="song_name">{room?.SongArtist}</p>
                         </div>
                     </div>
                     <div className="playback_controls">
