@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Context,useEffect, useState, useContext, createContext } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import testData from "../test_data/room_data"
 import '../styles/room.css';
@@ -6,8 +6,12 @@ import PlayButton from './PlayButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import PlaybackBar from './PlaybackBar';
-import {Types} from '../models/Types'
+import {Room} from '../models/Room'
 import {getRoom} from '../services/ApiService';
+import SongQueue from './SongQueue';
+import ChatBox from './ChatBox';
+import SearchBar from './SearchBar';
+let signalR = require('@microsoft/signalr')
 // declare global{
 //     interface Window{
 //         onSpotifyWebPlaybackSDKReady: () => void;
@@ -16,14 +20,16 @@ import {getRoom} from '../services/ApiService';
 interface RouteProps{
     access_token: string;
 } 
-export default function Room() {
+export default function RoomComponent() {
     const {roomID}  = useParams();
+    
     const location = useLocation().state as RouteProps;
     const access_token = location.access_token;
-    const [room, setRoom] = useState<Types.Room | null>();
+    const [room, setRoom] = useState<Room | null>();
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
     const [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
     let [deviceID, setDeviceID] = useState<string>("");
+    // let DeviceContext: Context<string> | undefined = createContext(undefined) ;
     const head = document.querySelector("head");
     const script = document.createElement("script");
     useEffect(()=>{
@@ -33,6 +39,7 @@ export default function Room() {
                    return room?.at(0);
                 });
             setRoom(room);
+            connectToServer();
         }
         fetchRooms();
     },[])
@@ -58,6 +65,7 @@ export default function Room() {
                 player.addListener("ready", ({device_id}) =>{
                     console.log(device_id);
                     setDeviceID(device_id);
+                    // DeviceContext = createContext<string>(device_id);
                     setSpotifyPlayer(player);
                 });
                 player.addListener('initialization_error', ({ message }) => { 
@@ -113,11 +121,11 @@ export default function Room() {
   return (
     <>
         <div className="room_page">
-            <h2 className="header">{room?.Name}</h2>
+            <div className="header">{room?.Name}</div>
             <div className="room_container">
                 <div className="playback_container">
                     <div className="album_info">
-                        <img className="album_room_pic" src={room?.SongPicture}/>
+                        <img className="album_room_pic" src={room?.AlbumPicture}/>
                         <div className="playback_info">
                             <p className="album_name">{room?.SongName}</p>
                             <p className="song_name">{room?.SongArtist}</p>
@@ -129,16 +137,31 @@ export default function Room() {
                         <NextButton/>
                     </div>
                     <PlaybackBar/>
-                        <button onClick={() => connectPlayer()}>
-                            click to listen along
+                        <button className="listen_button" onClick={() => connectPlayer()}>
+                            Start listening!
                         </button>
                 </div>
-                <div className="queue_container">
-
+                <div className="interaction_container">
+                    <SearchBar deviceID={deviceID} accessToken={access_token}/> 
+                    <div className="queue_chat_container">
+                        <SongQueue roomID={roomID!}/>
+                        <ChatBox/>
+                    </div>
                 </div>
             </div>
         </div>
     </>
   )
+}
+
+function connectToServer() {
+    let connection = new signalR.HubConnectionBuilder()
+        .withUrl("https:localhost:7088/chat")
+        .build();
+    connection.start()
+        .then(()=> connection.send("newMessage", 23324, "test"));
+    connection.on("messageReceived", (username: string, message:string)=>{
+        console.log(username + ' ' + message)
+    });
 }
 

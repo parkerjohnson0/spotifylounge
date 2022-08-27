@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Room from './components/Room';
+import  RoomComponent  from './components/RoomComponent';
 import Login from './components/Login';
 import './styles/Login.css'
 
@@ -16,7 +16,7 @@ root.render(
     <Routes>
       <Route path="/" element={<Login />}/>
       <Route path="/:access_token" element={<App />}/>
-      <Route path="/room/:roomID" element={<Room />}/>
+      <Route path="/room/:roomID" element={<RoomComponent />}/>
     </Routes>
     </BrowserRouter>
   // </React.StrictMode>

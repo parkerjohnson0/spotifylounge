@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="app_container">
       <div className="inner_container">
-        <h2 className="header">Spotify Lounges</h2>
+        <div className="header">Spotify Lounges</div>
         <div className="App">
           {/* NOTE: figure out cleaner way to do this maybe */}
            <LoungeList lounges={lounges} />

@@ -1,0 +1,15 @@
+.search_results_queue_button{
+
+    position: relative;
+    align-self: flex-end;
+    background-color: #06812d;
+    color: white;
+    height: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.search_results_queue_button:hover{
+
+    background-color: #1eaa4f;
+}

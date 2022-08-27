@@ -72,8 +72,11 @@
 .join_button{
     position: absolute;
     right: 0;
+    bottom: 0;
     margin-right: 5px;
     background-color: #06812d;
+    padding:5px;
+    box-sizing: content-box;
     color: white;
     width: 50px;
     text-decoration: none;

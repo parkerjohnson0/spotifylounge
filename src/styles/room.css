@@ -1,6 +1,6 @@
 .room_page{
-    /* display:flex; */
-    /* flex-direction: column; */
+    display:flex;
+    flex-direction: column;
     /* align-items:center; */
     /* justify-content: center; */
     width: 1200px;
@@ -11,13 +11,17 @@
 .room_container{
     background-color: #151515;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
 }
 .playback_container{
-    padding-left: 50px ;
-    padding-right: 50px;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 400px;
+    height: 700px;
+    justify-content: end;
 }
 .album_info{
     display:flex;
@@ -28,7 +32,7 @@
     padding-top: 50px;
 }
 .album_room_pic{
-    width: 300px;
+    width: 400px;
     align-self: flex-start;
     
 }
@@ -60,4 +64,32 @@
     height: 100px;
     position:relative;
     justify-content: center;
+}
+.interaction_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.listen_button{
+
+    position: relative;
+    align-self: center;
+    background-color: #06812d;
+    color: white;
+    height: 40px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.listen_button:hover{
+
+    background-color: #1eaa4f;
+}
+.queue_chat_container{
+    height: 95%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
 }

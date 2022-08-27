@@ -1,0 +1,9 @@
+.context_menu_container{
+    position: absolute;
+    right: 0;
+    align-self: center;
+    color: white;
+    width: 128px;
+    text-decoration: none;
+    list-style: none;
+}

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import '../styles/LoungeList.css';
 import {Link, useParams} from 'react-router-dom';
 import {getRooms} from '../services/ApiService';
-import {Types} from '../models/Types';
+import {Room} from '../models/Room';
 interface LoungeListProps{
     lounges: any[]
 }
 export default function LoungeList(props:LoungeListProps){
     const testID = 3;
     const {access_token} = useParams();
-    const [rooms, setRooms] = useState<Types.Room[] | null>();
+    const [rooms, setRooms] = useState<Room[] | null>();
     console.log(access_token);
     useEffect(()=>{
         const fetchRooms = async () =>{
@@ -25,7 +25,7 @@ export default function LoungeList(props:LoungeListProps){
                         <div className="room_info">
                             <div className="room_title">{x.Name}</div>
                             <div className="current_song_info">
-                                <img className="current_song_pic" src={x.SongPicture}/>
+                                <img className="current_song_pic" src={x.AlbumPicture}/>
                                 <div className="song_info">
                                     <p className="song_name_lounge">{x.SongName}</p> 
                                     <p className='artist_name_lounge'>{x.SongArtist}</p> 

@@ -1,0 +1,79 @@
+.search_result_container{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.search_result_item{
+    background-color: rgba(70, 56, 56, 0.459);
+    width: 90%;
+    position: relative;
+    height: 20%;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 2%;
+    transition: .15s;
+}
+.search_result_item:hover{
+    background-color: rgba(173, 147, 147, 0.459);
+}
+.search_result_pic{
+    height: 100%;
+}
+.search_result_song_info{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    font-family: "Rubik", sans-serif;
+}
+.search_results_length_queue{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    bottom: 0;
+    width: 25%;
+    height: 100%;
+}
+.search_results_song_length{
+    position: absolute;
+}
+.option_dots{
+    position: absolute;
+    right: 0;
+    align-self: center;
+    color: white;
+    width: 16px;
+    text-decoration: none;
+}
+.search_results_queue_button{
+
+    position: relative;
+    align-self: flex-end;
+    background-color: #06812d;
+    color: white;
+    height: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 2s;
+    border-radius: 4px;
+}
+.search_results_queue_button:hover{
+
+    background-color: #1eaa4f;
+}
+.search_results_queue_button_fade_in{
+    align-self: flex-end;
+    opacity: 1;
+    transition: .05s;
+}
+.search_results_queue_button_fade_out{
+    opacity: 0;
+}
