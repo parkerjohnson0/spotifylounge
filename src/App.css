@@ -16,8 +16,8 @@
   margin: 40px;
   font-family: "Rubik";
   font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
   white-space: nowrap;
   font-size: 10vmin;
   color: White;

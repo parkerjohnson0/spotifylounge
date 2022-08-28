@@ -7,7 +7,7 @@ import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import PlaybackBar from './PlaybackBar';
 import {Room} from '../models/Room'
-import {getRoom} from '../services/ApiService';
+import {getRoom, joinRoom, leaveRoom} from '../services/ApiService';
 import SongQueue from './SongQueue';
 import ChatBox from './ChatBox';
 import SearchBar from './SearchBar';
@@ -18,13 +18,14 @@ let signalR = require('@microsoft/signalr')
 //     }
 // }
 interface RouteProps{
-    access_token: string;
+    accessToken: string;
+    userID: number;
 } 
 export default function RoomComponent() {
     const {roomID}  = useParams();
     
     const location = useLocation().state as RouteProps;
-    const access_token = location.access_token;
+    const accessToken = location.accessToken;
     const [room, setRoom] = useState<Room | null>();
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
     const [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
@@ -33,7 +34,7 @@ export default function RoomComponent() {
     const head = document.querySelector("head");
     const script = document.createElement("script");
     useEffect(()=>{
-        const fetchRooms = async () =>{
+        const fetchRoom = async () =>{
             let room = await getRoom(roomID)
                 .then(room => {
                    return room?.at(0);
@@ -41,7 +42,8 @@ export default function RoomComponent() {
             setRoom(room);
             connectToServer();
         }
-        fetchRooms();
+        fetchRoom();
+        
     },[])
     useEffect(()=>{
        return ()  =>{
@@ -59,7 +61,7 @@ export default function RoomComponent() {
             window.onSpotifyWebPlaybackSDKReady =  () => {
                 let player = new Spotify.Player({
                     name: 'TEST PLAYER',
-                    getOAuthToken: cb =>{cb(access_token);},
+                    getOAuthToken: cb =>{cb(accessToken);},
                     volume:0.5
                 });
                 player.addListener("ready", ({device_id}) =>{
@@ -133,7 +135,7 @@ export default function RoomComponent() {
                     </div>
                     <div className="playback_controls">
                         <PreviousButton/>
-                        <PlayButton access_token={access_token} deviceID={deviceID} player={spotifyPlayer}/>
+                        <PlayButton accessToken={accessToken} deviceID={deviceID} player={spotifyPlayer}/>
                         <NextButton/>
                     </div>
                     <PlaybackBar/>
@@ -142,7 +144,7 @@ export default function RoomComponent() {
                         </button>
                 </div>
                 <div className="interaction_container">
-                    <SearchBar deviceID={deviceID} accessToken={access_token}/> 
+                    <SearchBar deviceID={deviceID} accessToken={accessToken}/> 
                     <div className="queue_chat_container">
                         <SongQueue roomID={roomID!}/>
                         <ChatBox/>

@@ -15,7 +15,7 @@ root.render(
     <BrowserRouter >
     <Routes>
       <Route path="/" element={<Login />}/>
-      <Route path="/:access_token" element={<App />}/>
+      <Route path="/:accessToken/user/:userID" element={<App />}/>
       <Route path="/room/:roomID" element={<RoomComponent />}/>
     </Routes>
     </BrowserRouter>

@@ -25,3 +25,10 @@ export async function getRoom(roomID: string | undefined): Promise<Room[] | null
     })
     return room;
 }
+
+export async function joinRoom(){
+
+}
+export async function leaveRoom(){
+
+}

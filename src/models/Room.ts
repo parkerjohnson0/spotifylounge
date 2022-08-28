@@ -3,5 +3,6 @@ export interface Room  {
     Name: string,
     SongName: string,
     AlbumPicture: string,
-    SongArtist: string
+    SongArtist: string,
+    NumUsers: number
 }

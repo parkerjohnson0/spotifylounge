@@ -8,10 +8,11 @@ interface LoungeListProps{
 }
 export default function LoungeList(props:LoungeListProps){
     const testID = 3;
-    const {access_token} = useParams();
+    const {accessToken, userID} = useParams();
     const [rooms, setRooms] = useState<Room[] | null>();
-    console.log(access_token);
+    console.log(accessToken);
     useEffect(()=>{
+        // window.location.href= "/rooms";
         const fetchRooms = async () =>{
             setRooms(await getRooms());
         }
@@ -34,10 +35,10 @@ export default function LoungeList(props:LoungeListProps){
 
                         </div>
                         <div className="lounge_footer">
-                            <img className='user_icon' src='icons/lounge_user_icon.png' />
-                            <div className="users_connected">6</div>
+                            <img className='user_icon' src='/icons/lounge_user_icon.png' />
+                            <div className="users_connected">{x.NumUsers}</div>
                             <Link to={`/room/${x.RoomID}`}
-                            state={{access_token: access_token}} className="join_button">Join</Link>
+                            state={{accessToken: accessToken, userID:userID}} className="join_button">Join</Link>
                         </div>
                     </div>
             })}
