@@ -1,36 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-// import useSpotifyAuth from './hooks/useSpotifyAuth';
-import useSpotifyLounges from './hooks/useSpotifyLounges';
-import LoungeList from './components/LoungeList';
-import Login from './components/Login'
-function App() {
-  const [authorized, setAuthorize] = useState(false);
-  const [token, setToken] = useState<string | null>("");
-  const lounges: any[] = useSpotifyLounges();
-  // console.log("authorized: " +  authorized);
-  useEffect(()=>{
-    const hash: string = window.location.hash;
-    let token = window.localStorage.getItem("token");
-    if (!token && hash){
-      token = hash.substring(1).split("&").find(x => x.startsWith("access_token"))?.split("=")[1]!;
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-    }
-    setToken(token);
-  },[])
+import React, { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import LoungeListPage from './components/LoungeListPage';
+import RoomPage from './components/RoomPage';
 
+
+export default function App() {
+    const [authorized, setAuthorized] = useState<boolean>(false);
   return (
-    <div className="app_container">
-      <div className="inner_container">
-        <div className="header">Spotify Lounges</div>
-        <div className="App">
-          {/* NOTE: figure out cleaner way to do this maybe */}
-           <LoungeList lounges={lounges} />
-        </div>
-      </div>
-    </div>
+        <>
+            {authorized || <Login />}
+            <Routes>
+                <Route path="/" element={<LoungeListPage authorized={authorized} setAuthorized={setAuthorized} />}/>
+                <Route path="/:accessToken/user/:userID" element={<LoungeListPage authorized={authorized} setAuthorized={setAuthorized}/>}/>
+                <Route path="/room/:roomID" element={<RoomPage authorized={authorized} setAuthorized={setAuthorized}/>}/>
+               {/* dont this is going to be used. remove later  */}
+                {/* <Route path="/room/:roomID/:accessToken/user/:userID" element={<RoomPage authorized={authorized} setAuthorized={setAuthorized}/>}/> */}
+            </Routes>
+        </>
   )
 }
-
-export default App;

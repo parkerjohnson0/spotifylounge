@@ -1,7 +1,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import React,{useEffect, useState} from 'react';
+import React,{Dispatch, SetStateAction, useEffect, useState} from 'react';
 import '../styles/Login.css';
 
 type Nullable<T> = T | null;
@@ -35,17 +35,20 @@ export default function Login(){
         }
     },[isAuthorizing])
     return(
-        <div className="login_box">
-            <div className="login_text">
-            {text}
+        <div className="login_box_container">
+
+            <div className="login_box">
+                <div className="login_text">
+                {text}
+                </div>
+                <a className='login_button' href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}` +
+            `&response_type=code&redirect_uri=https://localhost:7040/api/Auth&scope=streaming ` + 
+            `user-read-playback-state user-modify-playback-state user-read-currently-playing ` +
+            `user-read-email user-read-private`}
+                >
+                    <p>Authorize</p>
+                </a>
             </div>
-            <a className='login_button' href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}` +
-        `&response_type=code&redirect_uri=https://localhost:7040/api/Auth&scope=streaming ` + 
-        `user-read-playback-state user-modify-playback-state user-read-currently-playing ` +
-        `user-read-email user-read-private`}
-            >
-                <p>Authorize</p>
-            </a>
         </div>
      
     )

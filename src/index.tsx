@@ -1,11 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import  RoomComponent  from './components/RoomComponent';
-import Login from './components/Login';
 import './styles/Login.css'
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,11 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
     <BrowserRouter >
-    <Routes>
-      <Route path="/" element={<Login />}/>
-      <Route path="/:accessToken/user/:userID" element={<App />}/>
-      <Route path="/room/:roomID" element={<RoomComponent />}/>
-    </Routes>
+      <App/>
     </BrowserRouter>
   // </React.StrictMode>
 );

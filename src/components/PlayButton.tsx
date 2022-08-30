@@ -3,7 +3,7 @@ import "../styles/PlayButton.css"
 interface PlayButtonProps {
     player: Spotify.Player | null; 
     deviceID: string;
-    accessToken: string;
+    accessToken: string | undefined;
 }
 export default function PlayButton(props: PlayButtonProps){
     async function  play(){

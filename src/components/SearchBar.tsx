@@ -7,7 +7,7 @@ import { searchSpotify } from '../services/SpotifyService';
 import { Track } from '../models/Track';
 import SearchResults from './SearchResults';
 interface SearchBarProps{
-  accessToken: string;
+  accessToken: string | undefined;
   deviceID: string
 }
 export default function SearchBar(props: SearchBarProps) {
@@ -34,6 +34,7 @@ export default function SearchBar(props: SearchBarProps) {
   }
   async function searchListener(e: KeyboardEvent){
         if (e.key === "Enter" ){
+          if (!props.accessToken) return;
           await searchSpotify(props.accessToken, searchRef.current)
                 .then((results)=>{
                   setSearchResults(results);

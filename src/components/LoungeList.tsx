@@ -4,13 +4,12 @@ import {Link, useParams} from 'react-router-dom';
 import {getRooms} from '../services/ApiService';
 import {Room} from '../models/Room';
 interface LoungeListProps{
-    lounges: any[]
+    lounges: any[];
 }
 export default function LoungeList(props:LoungeListProps){
     const testID = 3;
     const {accessToken, userID} = useParams();
     const [rooms, setRooms] = useState<Room[] | null>();
-    console.log(accessToken);
     useEffect(()=>{
         // window.location.href= "/rooms";
         const fetchRooms = async () =>{
