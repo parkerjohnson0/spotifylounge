@@ -5,9 +5,12 @@ import useSpotifyLounges from '../hooks/useSpotifyLounges';
 import LoungeList from './LoungeList';
 import Login from './Login'
 import { useParams } from 'react-router-dom';
+import NewRoomDialog from './NewRoomDialog';
 interface LoungeListPageProgs {
   setAuthorized: Dispatch<SetStateAction<boolean>>
+  setRoomID: Dispatch<SetStateAction<string | undefined>>
   authorized: boolean
+  toggleShowRoomDialog: () => void
 }
 function LoungeListPage(props: LoungeListPageProgs) {
   const [authorized, setAuthorized] = useState(false);
@@ -33,18 +36,24 @@ function LoungeListPage(props: LoungeListPageProgs) {
       setAuthorized(false);
       props.setAuthorized(false);
     }
-    console.log(cookie + " " + userID);
+    // console.log(cookie + " " + userID);
   },[])
 
   return (
     <div className="app_container">
       <div className="inner_container">
-        <div className="header">Spotify Lounges</div>
+        <div className="header">
+          Spotify Lounges
+        </div>
         <div className="App">
           {/* NOTE: figure out cleaner way to do this maybe */}
-           <LoungeList lounges={lounges} />
+           <LoungeList setRoomID={props.setRoomID} lounges={lounges} />
         </div>
       </div>
+        <button className="lounge_list_add_room_button"
+            onClick={()=>  props.toggleShowRoomDialog()}>
+            +
+        </button>
     </div>
   )
 }

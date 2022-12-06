@@ -3,6 +3,7 @@
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
+    height: 100%;
     justify-content: center;
     color: white;
 
@@ -40,6 +41,13 @@
     right: 0; */
     padding-left: 5px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.empty_song_info{
+
 }
 .song_name_lounge{
 
@@ -86,3 +94,18 @@
 
     background-color: #1eaa4f;
 }
+/* .lounge_list_add_room_button{
+    position: absolute;
+    background-color: #06812d;
+    color: white;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 64px;
+}
+.lounge_list_add_room_button:hover{
+    cursor: pointer;
+    background-color: #1b8b40;
+} */

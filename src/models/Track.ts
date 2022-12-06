@@ -4,5 +4,7 @@ export interface Track{
     SongArtist: string,
     AlbumName: string,
     SongURI: string,
+    AlbumURI: string,
+    AlbumContext: number,
     DurationMS: number
 }

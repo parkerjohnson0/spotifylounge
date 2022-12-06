@@ -27,13 +27,27 @@
   text-align: center;
   display: flex;
   flex-direction: row;
-  height:auto;
+  height:100%;
   width: auto;
   align-items: center;
   justify-content: center;
 
 }
-
+.lounge_list_add_room_button{
+    position: sticky;
+    background-color: #06812d;
+    color: white;
+    bottom: 10%;
+    left: 80%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 48px;
+}
+.lounge_list_add_room_button:hover{
+    cursor: pointer;
+    background-color: #1b8b40;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

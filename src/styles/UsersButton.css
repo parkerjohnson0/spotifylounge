@@ -1,0 +1,20 @@
+.usersbutton_container{
+    /* margin-bottom: 4%; */
+    /* align-items: baseline; */
+    /* width: 50%; */
+    justify-self: flex-start;
+    display: flex;
+    width: 50%;
+}
+.usersbutton_icon{
+    position: relative;
+    align-self: center;
+    padding: 5px;
+    color: white;
+    height: 25px;
+    margin-bottom: 5px;
+    margin-left: 10%;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}

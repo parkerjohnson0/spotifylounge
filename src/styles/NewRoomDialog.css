@@ -1,0 +1,38 @@
+.room_dialog_container{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.room_dialog_box{
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    display: flex;
+    position: relative;
+    padding-bottom: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+.room_dialog_text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.room_dialog_text_title{
+    
+}
+.room_dialog_text_input{
+    display: flex;
+    gap: 2%; 
+}
+.room_dialog_input{
+
+}

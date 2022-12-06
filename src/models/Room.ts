@@ -4,5 +4,9 @@ export interface Room  {
     SongName: string,
     AlbumPicture: string,
     SongArtist: string,
-    NumUsers: number
+    NumUsers: number,
+    DurationMS: number,
+    ProgressMS: number,
+    AlbumURI: string,
+    AlbumContext:number 
 }

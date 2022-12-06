@@ -1,6 +1,5 @@
 
 .play_button_icon{
-    content: url("../../public/icons/play.png");
     width: 50px;
 }
 .play_button_icon:hover{

@@ -18,10 +18,11 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
+    /* padding-top: 45px; */
     box-sizing: border-box;
-    width: 400px;
-    height: 700px;
-    justify-content: end;
+    width: 60%;
+    /* height: 700px; */
+    justify-content: flex-start;
 }
 .album_info{
     display:flex;
@@ -32,8 +33,8 @@
     padding-top: 50px;
 }
 .album_room_pic{
-    width: 400px;
     align-self: flex-start;
+    width: 100%;
     
 }
 .playback_info{
@@ -67,9 +68,10 @@
 }
 .interaction_container{
     width: 100%;
+    padding-top: 10px;
+    height: 700px;
     display: flex;
     flex-direction: column;
-
 }
 .listen_button{
 
@@ -85,7 +87,7 @@
 }
 .listen_button:hover{
 
-    background-color: #1eaa4f;
+    background-color: #148f3f;
 }
 .queue_chat_container{
     height: 95%;

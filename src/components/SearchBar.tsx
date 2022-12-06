@@ -38,7 +38,7 @@ export default function SearchBar(props: SearchBarProps) {
           await searchSpotify(props.accessToken, searchRef.current)
                 .then((results)=>{
                   setSearchResults(results);
-                  console.log(results);
+                  // console.log(results);
                 });
               }
   }
@@ -53,12 +53,12 @@ export default function SearchBar(props: SearchBarProps) {
     <div className="search_bar_container">
         <div className="input_container">
           <FontAwesomeIcon className="input_icon" icon={faSearch}/>
-          <input id="input" autoComplete="off" type="text" className="input_box" placeholder="Search for music"
+          <input id="input" autoComplete="off" type="text" className="search_bar_input_box" placeholder="Search for music"
             onChange={(e)=> setText(e.target.value)}>
           </input>
           {hideClear || <FontAwesomeIcon className="clear_icon" icon={faX}
                           onClick={()=> setText("")}/>}
-          {searchResults.length == 0 || <SearchResults searchResults={searchResults}/> }
+          {searchResults.length == 0 || <SearchResults clearText={() => setText("")} searchResults={searchResults}/> }
           
         </div>
     </div>

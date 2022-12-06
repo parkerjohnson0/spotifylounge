@@ -6,7 +6,39 @@
 }
 .playbackbar{
     width: 100%;
-    background: linear-gradient(90deg, white 50%, #8e8e8e 50%);
+    /* background: linear-gradient(90deg, white 50%, #8e8e8e 50%); */
     height: 5px;
     border-radius: 10px;
+}
+.volume_container{
+    position: absolute;
+
+}
+.volume_button{
+    width: 30px;
+}
+.volume_button:hover{
+    content: url("../../public/icons/volume_alt.png");
+    /* cursor: pointer; */
+}
+.volume_slider::before{
+    top: -20px;
+    bottom: -20px;
+    left: -20px;
+    right: -20px;
+}
+.volume_slider{
+   rotate: -90deg; 
+   width: 100px;
+   position: absolute;
+   right: -45px;
+   bottom:70px;
+   accent-color: #22c75c;
+   box-sizing: border-box;
+   margin: 10px;
+   /* color: red; */
+   /* align-self: flex-start; */
+}
+.volume_slider:hover{
+   accent-color: #13b34b;
 }

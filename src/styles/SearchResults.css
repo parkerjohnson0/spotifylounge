@@ -9,7 +9,7 @@
     align-items: center;
 }
 .search_result_item{
-    background-color: rgba(70, 56, 56, 0.459);
+    background-color: rgba(70, 56, 56, 0.800);
     width: 90%;
     position: relative;
     height: 20%;
@@ -21,7 +21,7 @@
     transition: .15s;
 }
 .search_result_item:hover{
-    background-color: rgba(173, 147, 147, 0.459);
+    background-color: rgba(173, 147, 147, 0.8);
 }
 .search_result_pic{
     height: 100%;
@@ -54,7 +54,6 @@
     text-decoration: none;
 }
 .search_results_queue_button{
-
     position: relative;
     align-self: flex-end;
     background-color: #06812d;
@@ -66,10 +65,9 @@
     border-radius: 4px;
 }
 .search_results_queue_button:hover{
-
     background-color: #1eaa4f;
 }
-.search_results_queue_button_fade_in{
+.search_results_queue_button_fade_in{ 
     align-self: flex-end;
     opacity: 1;
     transition: .05s;

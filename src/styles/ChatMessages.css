@@ -1,0 +1,20 @@
+.chat_messages_container{
+    height: 492px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+    align-self: baseline;
+}
+.chat_messages_date{
+    font-size: 10px;
+    color: rgb(156, 156, 156);
+    padding-right: 5px;
+}
+.chat_messages_chatmessage{
+    color: whitesmoke;
+    font-size: 18px;
+}

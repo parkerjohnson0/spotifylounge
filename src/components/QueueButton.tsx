@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { RoomQueueContext } from '../context/RoomQueueContext'
 
-export default function QueueButton() {
+interface QueueButtonProps{
+  queueSong: () => void
+}
+export default function QueueButton(props: QueueButtonProps) {
   return (
-        <button className="search_results_queue_button">
+        <button className="search_results_queue_button"
+          onClick={()=>{
+              props.queueSong()
+          }}>
             Queue
         </button>
   )

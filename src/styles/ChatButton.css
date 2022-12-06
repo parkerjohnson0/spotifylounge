@@ -1,0 +1,26 @@
+
+.chatbutton_container{
+    /* margin-bottom: 4%; */
+    /* width: 50%; */
+    justify-content: flex-end;
+    display: flex;
+    width: 50%;
+}
+.chatbutton_button{
+
+    position: relative;
+    align-self: center;
+    background-color: #06812d;
+    color: white;
+    width: 30%;
+    height: 40px;
+    margin-bottom: 5px;
+    margin-right: 10%;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.chatbutton_button:hover{
+
+    background-color: #148f3f;
+}
