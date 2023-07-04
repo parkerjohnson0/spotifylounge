@@ -59,16 +59,17 @@ export async function getPlaybackState(accessToken: string): Promise<PlaybackSta
     })
     return ret
 }
+//CANT USE THIS REMOVE EVENTUALLY
 //doesnt return anything. and really cant because this only called from within a useEffect
 //prime example of why I need to work on automated reqeust retries. 
 //e
-export async function updatePlayerVolume(volume: number, device: string, accessToken: string){
-    await fetch(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volume}`+
-    `&device_id=${device}`,{
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + accessToken
-        },
-    })
-}
+//export async function updatePlayerVolume(volume: number, device: string, accessToken: string){
+//    await fetch(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volume}`
+//    ,{
+//        method: "PUT",
+//        headers: {
+//            "Content-Type": "application/json",
+//            "Authorization": 'Bearer ' + accessToken
+//        },
+//    })
+//}

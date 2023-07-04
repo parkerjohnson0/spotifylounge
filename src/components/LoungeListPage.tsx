@@ -14,23 +14,21 @@ interface LoungeListPageProgs {
 }
 function LoungeListPage(props: LoungeListPageProgs) {
   const [authorized, setAuthorized] = useState(false);
-  const [token, setToken] = useState<string | undefined>("");
-  const {accessToken, userID} = useParams();
+  const [tokenCookie, setTokenCookie] = useState<string | null>(window.localStorage.getItem("token"));
+  let {accessToken, userID} = useParams();
   const lounges: any[] = useSpotifyLounges();
   // console.log("authorized: " +  authorized);
   useEffect(()=>{
-    const hash: string = window.location.hash;
-    let cookie: string | undefined = window.localStorage.getItem("token") || accessToken;
-    if (!cookie && hash){
-      cookie = hash.substring(1).split("&").find(x => x.startsWith("access_token"))?.split("=")[1]!;
-      window.location.hash = "";
-      window.localStorage.setItem("token", cookie);
-    }
-    setToken(cookie);
-    if (cookie && !props.authorized){
+    if (tokenCookie && !authorized){
       props.setAuthorized(true);
       setAuthorized(true);
+      accessToken = tokenCookie;
      window.history.pushState({}, "", "/");
+    }
+    else if (accessToken){
+      window.localStorage.setItem("token",accessToken);
+      props.setAuthorized(true);
+      setAuthorized(true);
     }
     else{
       setAuthorized(false);
