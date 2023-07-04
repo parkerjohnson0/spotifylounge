@@ -237,10 +237,10 @@ export default function RoomPage(props: RoomPageProps) {
                     console.error(message);
                 });
                 player.connect();
-                if (songQueue && songQueue.length > 0){
-                    console.log("PLAYER NOT INITIALIZED BUT THERE IS SONG IN QUEUE")
-                    playNextSong();
-                }
+                //if (songQueue && songQueue.length > 0){
+                //    console.log("PLAYER NOT INITIALIZED BUT THERE IS SONG IN QUEUE")
+                //    playNextSong();
+                //}
                 // setSpotifyPlayer(player);
                 // player.activateElement();
     }

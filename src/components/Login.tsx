@@ -42,7 +42,7 @@ export default function Login(){
                 {text}
                 </div>
                 <a className='login_button' href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}` +
-            `&response_type=code&redirect_uri=https://localhost:7040/api/Auth&scope=streaming ` + 
+            `&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=streaming ` + 
             `user-read-playback-state user-modify-playback-state user-read-currently-playing ` +
             `user-read-email user-read-private`}
                 >
