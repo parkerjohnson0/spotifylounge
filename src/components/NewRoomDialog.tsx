@@ -2,6 +2,9 @@ import React, { useContext } from 'react'
 import { RoomQueueContext } from '../context/RoomQueueContext';
 import { createRoom } from '../services/ApiService';
 import '../styles/NewRoomDialog.css';
+import  { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface NewRoomDialogProps{
     setShowRoomDialog: React.Dispatch<React.SetStateAction<boolean>>
@@ -19,6 +22,8 @@ export default function NewRoomDialog(props: NewRoomDialogProps) {
   return (
     <div className='room_dialog_container'>
         <div className='room_dialog_box'>
+            <FontAwesomeIcon size={"lg"} className='room_dialog_close' icon={faWindowClose}
+            onClick={() => props.setShowRoomDialog(false)} />
             <div className='room_dialog_text'>
                 <p className='room_dialog_text_title'>
                     New Room

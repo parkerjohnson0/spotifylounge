@@ -26,6 +26,12 @@
     align-items: center;
     justify-content: center;
 }
+.room_dialog_close{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
 .room_dialog_text_title{
     
 }
