@@ -20,6 +20,7 @@ import { QueuedSong } from '../models/QueuedSong';
 import { create } from 'domain';
 import { RoomQueueContext, RoomQueueProvider } from '../context/RoomQueueContext';
 import { RoomConnectionReturn } from '../models/RoomConnectionReturn';
+import useAccessToken from '../hooks/useAccessToken';
 let signalR = require('@microsoft/signalr')
 // declare global{
 //     interface Window{
@@ -37,11 +38,13 @@ interface RoomPageProps {
 }
 export default function RoomPage(props: RoomPageProps) {
     
-  const [token, setToken] = useState<string | undefined>("");
+//   const [token, setToken] = useState<string | undefined>("");
   const {roomID} = useParams();
+  const [authorized, setAuthorized] = useState(false);
   const [chatMessages, setChatMessages] = useState<Array<ChatMessage>>(new Array<ChatMessage>())
     const location = useLocation().state as RouteProps;
-    const accessToken = location.accessToken;
+const [accessToken,setAccessToken] = useAccessToken(authorized, setAuthorized);
+    // const accessToken = location.accessToken;
     const userID:number = parseInt(location.userID);
     const [room, setRoom] = useState<Room | null>();
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
@@ -68,7 +71,9 @@ export default function RoomPage(props: RoomPageProps) {
     //     .withUrl("https:localhost:7088/room")
     //     .configureLogging(LogLevel.None)
     //     .build());
-
+    useEffect(()=>{
+        props.setAuthorized(authorized)
+    },[authorized])
     useEffect(()=>{
         // const fetchData = async () =>{
         // if (roomID){
@@ -124,21 +129,21 @@ export default function RoomPage(props: RoomPageProps) {
         connection!.send("ChatMessage",message, userID,roomID);
     }
     useEffect(()=>{
-        const hash: string = window.location.hash;
-        let cookie: string | undefined = window.localStorage.getItem("token") || accessToken;
-        if (!cookie && hash){
-            cookie = hash.substring(1).split("&").find(x => x.startsWith("access_token"))?.split("=")[1]!;
-            window.location.hash = "";
-            window.localStorage.setItem("token", cookie);
-        }
-        setToken(cookie);
-        if (cookie || props.authorized){
-            props.setAuthorized(true);
-            // window.history.pushState({}, "", `/room/${roomID}`);
-        }
-        else{
-            props.setAuthorized(false);
-        }
+        // const hash: string = window.location.hash;
+        // let cookie: string | undefined = window.localStorage.getItem("token") || accessToken;
+        // if (!cookie && hash){
+        //     cookie = hash.substring(1).split("&").find(x => x.startsWith("access_token"))?.split("=")[1]!;
+        //     window.location.hash = "";
+        //     window.localStorage.setItem("token", cookie);
+        // }
+        // setToken(cookie);
+        // if (cookie || props.authorized){
+        //     props.setAuthorized(true);
+        //     // window.history.pushState({}, "", `/room/${roomID}`);
+        // }
+        // else{
+        //     props.setAuthorized(false);
+        // }
         // console.log(cookie + " " + userID);
     },[])
     const getChatMessages = async () =>{
