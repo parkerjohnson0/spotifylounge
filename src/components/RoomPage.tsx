@@ -21,6 +21,7 @@ import { create } from 'domain';
 import { RoomQueueContext, RoomQueueProvider } from '../context/RoomQueueContext';
 import { RoomConnectionReturn } from '../models/RoomConnectionReturn';
 import useAccessToken from '../hooks/useAccessToken';
+import { AuthContext } from '../context/AuthContext';
 let signalR = require('@microsoft/signalr')
 // declare global{
 //     interface Window{
@@ -33,17 +34,18 @@ type RouteProps = {
     roomID: string 
 } 
 interface RoomPageProps {
-  setAuthorized: Dispatch<SetStateAction<boolean>>
-  authorized: boolean
+//   setAuthorized: Dispatch<SetStateAction<boolean>>
+//   authorized: boolean
 }
 export default function RoomPage(props: RoomPageProps) {
     
 //   const [token, setToken] = useState<string | undefined>("");
   const {roomID} = useParams();
-  const [authorized, setAuthorized] = useState(false);
+//   const [authorized, setAuthorized] = useState(false);
+    const {authorized, setAuthorized} = useContext(AuthContext);
   const [chatMessages, setChatMessages] = useState<Array<ChatMessage>>(new Array<ChatMessage>())
     const location = useLocation().state as RouteProps;
-const [accessToken,setAccessToken] = useAccessToken(authorized, setAuthorized);
+const accessToken = useAccessToken(authorized, setAuthorized);
     // const accessToken = location.accessToken;
     const userID:number = parseInt(location.userID);
     const [room, setRoom] = useState<Room | null>();
@@ -71,9 +73,9 @@ const [accessToken,setAccessToken] = useAccessToken(authorized, setAuthorized);
     //     .withUrl("https:localhost:7088/room")
     //     .configureLogging(LogLevel.None)
     //     .build());
-    useEffect(()=>{
-        props.setAuthorized(authorized)
-    },[authorized])
+    // useEffect(()=>{
+    //     props.setAuthorized(authorized)
+    // },[authorized])
     useEffect(()=>{
         // const fetchData = async () =>{
         // if (roomID){

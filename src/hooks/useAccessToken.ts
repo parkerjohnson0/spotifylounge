@@ -1,13 +1,18 @@
 import { Dispatch, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-export default function useAccessToken(authorized:boolean, setAuthorized:Dispatch<React.SetStateAction<boolean>>): [string, Dispatch<React.SetStateAction<string>>]{
-  const [tokenCookie, setTokenCookie] = useState<string>(JSON.parse(window.localStorage.getItem("token") || "")?.value || "");
+interface AccessToken{
+  value: string,
+  expiry: Date 
+}
+export default function useAccessToken(authorized:boolean, setAuthorized:Dispatch<React.SetStateAction<boolean>>): string{
+  const [tokenCookie, setTokenCookie] = useState<AccessToken>(
+      JSON.parse(window.localStorage.getItem("token") || JSON.parse("")
+    ));
   let {accessToken} = useParams();
   useEffect(()=>{
-     if (tokenCookie && !authorized){
+     if (tokenCookie){
        setAuthorized(true);
-       accessToken = tokenCookie;
+       accessToken = tokenCookie.value
      }
      else if (accessToken){
         let expiryDate = new Date();
@@ -25,5 +30,5 @@ export default function useAccessToken(authorized:boolean, setAuthorized:Dispatc
        setAuthorized(false);
      }
   },[])
-return [tokenCookie, setTokenCookie]
+return tokenCookie.value;
 }

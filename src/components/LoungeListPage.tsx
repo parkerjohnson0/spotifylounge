@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import '../styles/LoungeListPage.css';
 // import useSpotifyAuth from './hooks/useSpotifyAuth';
 import useSpotifyLounges from '../hooks/useSpotifyLounges';
@@ -7,20 +7,20 @@ import Login from './Login'
 import { useParams } from 'react-router-dom';
 import NewRoomDialog from './NewRoomDialog';
 import useAccessToken from '../hooks/useAccessToken';
+import { AuthContext } from '../context/AuthContext';
 interface LoungeListPageProgs {
-  setAuthorized: Dispatch<SetStateAction<boolean>>
   setRoomID: Dispatch<SetStateAction<string | undefined>>
-  authorized: boolean
   toggleShowRoomDialog: () => void
 }
 function LoungeListPage(props: LoungeListPageProgs) {
-  const [authorized, setAuthorized] = useState(false);
+  // const [authorized, setAuthorized] = useState(false);
+  const {authorized, setAuthorized} = useContext(AuthContext);
   let {accessToken, userID} = useParams();
-  const [tokenCookie, setTokenCookie] = useAccessToken(authorized, setAuthorized);
+  const tokenCookie = useAccessToken(authorized, setAuthorized);
   const lounges: any[] = useSpotifyLounges();
-  useEffect(()=>{
-    props.setAuthorized(authorized)
-  },[authorized])
+  // useEffect(()=>{
+  //   props.setAuthorized(authorized)
+  // },[authorized])
   // console.log("authorized: " +  authorized);
   // useEffect(()=>{
   //   if (tokenCookie && !authorized){
