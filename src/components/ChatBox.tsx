@@ -17,11 +17,17 @@ export default function ChatBox(props:ChatBoxProps) {
   //    }
   //    getChatMessages();
   // }, [])
+  function inputKeyDown(event: React.KeyboardEvent<HTMLInputElement> ){
+    if (event.key === "Enter"){
+      props.addChatMessage()
+    }
+  }
   return (
     <div className="chatbox_container">
       <div className="chatbox_inner_container">
         <ChatMessages chatMessages={props.chatMessages}/>
-        <input id="chatbox" className="chatbox_input">
+        <input id="chatbox" className="chatbox_input"
+        onKeyDown={inputKeyDown}>
         </input>
         <div className="chatbox_users_chat_container">
           <UsersButton/>

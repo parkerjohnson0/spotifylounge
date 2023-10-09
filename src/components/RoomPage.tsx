@@ -47,7 +47,10 @@ export default function RoomPage(props: RoomPageProps) {
     const location = useLocation().state as RouteProps;
 const accessToken = useAccessToken(authorized, setAuthorized);
     // const accessToken = location.accessToken;
-    const userID:number = parseInt(location.userID);
+    const userID:number = parseInt(location.userID) || parseInt(window.localStorage.getItem("userID")!)
+    useEffect(()=>{
+       window.localStorage.setItem("userID",userID.toString()) 
+    },[userID])
     const [room, setRoom] = useState<Room | null>();
     const webPlaybackScript = "https://sdk.scdn.co/spotify-player.js";
     const [spotifyPlayer, setSpotifyPlayer] = useState<Spotify.Player | null>(null);
@@ -153,13 +156,14 @@ const accessToken = useAccessToken(authorized, setAuthorized);
     }
     useEffect(()=>{
         // const connect = async () => {
-        //     if (!chatConnection.connectionId){
+        //     if (!connection?.connectionId){
         //         console.log("connectionid is null, attempting to connect to server")
         //         await connectToServer(userID, parseInt(roomID!));
         //     }
-        // connect();
+        //     console.log("chatConnection object changed: " , connection)
         // }
-        console.log("chatConnection object changed: " , connection)
+        // connect();
+            console.log("chatConnection object changed: " , connection?.state)
     // },[chatConnection])
     },[connection])
     useEffect(()=>{

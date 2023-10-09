@@ -6,11 +6,20 @@ interface AccessToken{
 }
 export default function useAccessToken(authorized:boolean, setAuthorized:Dispatch<React.SetStateAction<boolean>>): string{
   const [tokenCookie, setTokenCookie] = useState<AccessToken>(
-      JSON.parse(window.localStorage.getItem("token") || JSON.parse("")
+      JSON.parse(window.localStorage.getItem("token") || JSON.stringify("")
     ));
+  const tokenExpired = isTokenExpired();
   let {accessToken} = useParams();
+  function isTokenExpired(){
+    let token: AccessToken = JSON.parse(window.localStorage.getItem("token") || JSON.stringify(""));
+    //for some reason this is token.expiry is a string and not a date lol i blame my understanding of typescript
+    //fix later
+    let expiryDate = new Date(token.expiry);
+
+    return new Date() > expiryDate;
+  }
   useEffect(()=>{
-     if (tokenCookie){
+     if (tokenCookie && !tokenExpired){
        setAuthorized(true);
        accessToken = tokenCookie.value
      }
