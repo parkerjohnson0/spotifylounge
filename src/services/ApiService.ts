@@ -90,7 +90,7 @@ export async function getRecentChatMessages(roomID:string): Promise<Array<ChatMe
         json.forEach((x: ChatMessage) => {
            chatMessages.push({
             // DatePosted: new Date((x.DatePosted)).toISOString(),
-            DatePosted: new Date(x.DatePosted).toString(),
+            DatePosted: new Date(x.DatePosted + "Z").toString(),
             DisplayName: x.DisplayName,
             Message: x.Message,
             MessageID: x.MessageID,
