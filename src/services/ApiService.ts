@@ -6,6 +6,11 @@ import { QueuedSong } from '../models/QueuedSong';
 interface APIResponse {
     Success: boolean;
 }
+export  async function deleteRoom(roomID:number){
+    await fetch(process.env.REACT_APP_API_URL! + '/Rooms/' + roomID,{
+        method: 'DELETE',
+    })
+}
 export  async function getRooms(): Promise<Room[] | null>{
     let rooms: Room[] | null = null;
     await fetch(process.env.REACT_APP_API_URL! + '/Rooms',{

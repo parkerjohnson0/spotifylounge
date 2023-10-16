@@ -187,12 +187,14 @@ const accessToken = useAccessToken(authorized, setAuthorized);
             }
         }
         fetchRoom();
-        if (!window.localStorage.getItem("connectionID")){
-            userJoin();
-        }
-        else{
-            console.log('user already connected. window may have been refreshed');
-        }
+        userJoin();
+        // if (!window.localStorage.getItem("connectionID")){
+        //     userJoin();
+        // }
+        // else{
+        //     console.log('user already connected. window may have been refreshed');
+        //     userJoin();
+        // }
         getChatMessages();
         return () => {
             if (userID && roomID){

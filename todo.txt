@@ -1,0 +1,8 @@
+add song history tab
+right click songs in queue or history tab and allow adding to a users playlists
+delete rooms
+    only if creator
+    only if nobody currently in them
+    only if admin
+        (username == 'carverj95' heheheheh)
+click on user icon in a room to see list of users in chat

@@ -18,28 +18,6 @@ function LoungeListPage(props: LoungeListPageProgs) {
   let {accessToken, userID} = useParams();
   const tokenCookie = useAccessToken(authorized, setAuthorized);
   const lounges: any[] = useSpotifyLounges();
-  // useEffect(()=>{
-  //   props.setAuthorized(authorized)
-  // },[authorized])
-  // console.log("authorized: " +  authorized);
-  // useEffect(()=>{
-  //   if (tokenCookie && !authorized){
-  //     props.setAuthorized(true);
-  //     setAuthorized(true);
-  //     accessToken = tokenCookie;
-  //    window.history.pushState({}, "", "/");
-  //   }
-  //   else if (accessToken){
-  //     window.localStorage.setItem("token",accessToken);
-  //     props.setAuthorized(true);
-  //     setAuthorized(true);
-  //   }
-  //   else{
-  //     setAuthorized(false);
-  //     props.setAuthorized(false);
-  //   }
-  //   // console.log(cookie + " " + userID);
-  // },[])
 
   return (
     <div className="app_container">

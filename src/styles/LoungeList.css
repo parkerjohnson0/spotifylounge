@@ -74,6 +74,16 @@
     /* left: 4px; */
     /* bottom: 4px; */
 }
+.delete_room_button{
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    width: 5%;
+    &:hover{
+        content: url("../../public/icons/delete_alt.jpg");
+        cursor: pointer;
+    }
+}
 .users_connected{
 
 }
